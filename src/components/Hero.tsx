@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { PROFILE } from "../data/resume";
 
-const container = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -9,9 +9,23 @@ const container = {
   },
 };
 
-const item = {
+const itemVariantsFull: Variants = {
   hidden: { opacity: 0, y: 26 },
-  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 88, damping: 17 } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 88, damping: 17 },
+  },
+};
+
+const itemVariantsReduced: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.25 } },
+};
+
+const containerVariantsReduced: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { duration: 0.25 } },
 };
 
 type HeroProps = {
@@ -19,12 +33,8 @@ type HeroProps = {
 };
 
 export function Hero({ reduceMotion }: HeroProps) {
-  const variants = reduceMotion
-    ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.25 } } }
-    : container;
-  const itemVariants = reduceMotion
-    ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
-    : item;
+  const variants = reduceMotion ? containerVariantsReduced : containerVariants;
+  const itemVariants = reduceMotion ? itemVariantsReduced : itemVariantsFull;
 
   return (
     <section className="hero" id="top">
