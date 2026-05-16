@@ -1,6 +1,6 @@
 /** Single source of truth for résumé copy — replace `linkedin` with your vanity URL when ready. */
 export const SITE = {
-  linkedin: "https://www.linkedin.com/in/anurag-ranjan",
+  linkedin: "https://www.linkedin.com/in/anurag-ranjan-9309761ba/",
 } as const;
 
 export const PROFILE = {
