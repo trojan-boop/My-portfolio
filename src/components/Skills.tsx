@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import { SKILL_GROUPS } from "../data/resume";
+import { SKILL_GROUPS, SKILL_PROFICIENCY } from "../data/resume";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { GlassCard } from "./ui/GlassCard";
+import { SectionHeader } from "./ui/SectionHeader";
 
 type SkillsProps = {
   reduceMotion: boolean;
@@ -7,58 +10,73 @@ type SkillsProps = {
 
 export function Skills({ reduceMotion }: SkillsProps) {
   return (
-    <section className="section section--skills" id="skills">
+    <section id="skills" className="px-4 py-20 md:px-8 lg:px-12">
       <motion.div
-        className="section__header"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto max-w-6xl"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
       >
-        <span className="section__label">Skills</span>
-        <h2 className="section__title">Technical depth across the stack you care about</h2>
-        <p className="section__subtitle">
-          Languages, frameworks, architecture patterns, and delivery tools—organized the way hiring teams scan a CV.
-        </p>
-      </motion.div>
+        <SectionHeader
+          label="Skills"
+          title="Technical depth"
+          subtitle="Languages, frameworks, architecture, and delivery tools—organized for quick scanning."
+        />
 
-      <div className="skills-bento">
-        {SKILL_GROUPS.map((group, gi) => (
-          <motion.article
-            key={group.title}
-            className="skills-bento__card"
-            initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{
-              duration: 0.48,
-              delay: reduceMotion ? 0 : gi * 0.06,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            whileHover={reduceMotion ? undefined : { y: -4, transition: { duration: 0.22 } }}
-          >
-            <div className="skills-bento__card-glow" aria-hidden />
-            <h3 className="skills-bento__title">{group.title}</h3>
-            <ul className="skills-bento__chips">
-              {group.items.map((skill, si) => (
-                <motion.li
-                  key={skill}
-                  initial={reduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.92 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+        <motion.div className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" variants={staggerContainer}>
+          {SKILL_GROUPS.map((group) => (
+            <motion.div key={group.title} variants={fadeUp}>
+              <GlassCard hover={!reduceMotion}>
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-800 dark:text-slate-200">
+                  {group.title}
+                </h3>
+                <ul className="mt-3 flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <motion.li
+                      key={skill}
+                      className="rounded-full border border-slate-200/80 bg-slate-50 px-2.5 py-1 text-xs text-slate-700 dark:border-white/10 dark:bg-slate-800/60 dark:text-slate-300"
+                      whileHover={reduceMotion ? undefined : { y: -2, scale: 1.03 }}
+                    >
+                      {skill}
+                    </motion.li>
+                  ))}
+                </ul>
+              </GlassCard>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <SectionHeader label="Proficiency" title="Core strengths" />
+        <motion.ul className="space-y-5" variants={staggerContainer}>
+          {SKILL_PROFICIENCY.map((skill) => (
+            <motion.li key={skill.name} variants={fadeUp}>
+              <motion.div
+                className="flex justify-between text-sm"
+                initial={false}
+              >
+                <span className="font-medium text-slate-800 dark:text-slate-200">{skill.name}</span>
+                <span className="text-cyan-600 dark:text-cyan-400">{skill.level}%</span>
+              </motion.div>
+              <motion.div
+                className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
+                role="progressbar"
+                aria-valuenow={skill.level}
+                aria-valuemin={0}
+                aria-valuemax={100}
+              >
+                <motion.div
+                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-violet-500"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.level}%` }}
                   viewport={{ once: true }}
-                  transition={
-                    reduceMotion
-                      ? undefined
-                      : { type: "spring", stiffness: 380, damping: 22, delay: gi * 0.04 + si * 0.025 }
-                  }
-                >
-                  {skill}
-                </motion.li>
-              ))}
-            </ul>
-          </motion.article>
-        ))}
-      </div>
+                  transition={{ duration: reduceMotion ? 0.15 : 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+                />
+              </motion.div>
+            </motion.li>
+          ))}
+        </motion.ul>
+      </motion.div>
     </section>
   );
 }

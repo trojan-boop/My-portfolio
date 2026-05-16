@@ -1,42 +1,35 @@
 import { motion } from "framer-motion";
 import { PROFILE } from "../data/resume";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { GlassCard } from "./ui/GlassCard";
+import { SectionHeader } from "./ui/SectionHeader";
 
 export function About() {
   return (
-    <section className="section section--about" id="about">
+    <section id="about" className="px-4 py-20 md:px-8 lg:px-12">
       <motion.div
-        className="section__header"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto max-w-6xl"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
       >
-        <span className="section__label">Profile</span>
-        <h2 className="section__title">Summary and objective</h2>
+        <SectionHeader
+          label="Profile"
+          title="Summary and objective"
+          subtitle="Frontend engineer focused on scalable SaaS, CRM, EdTech, and AI-powered interfaces."
+        />
+        <motion.div className="grid gap-5 md:grid-cols-2" variants={fadeUp}>
+          <GlassCard>
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-cyan-500">Profile summary</h3>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{PROFILE.summary}</p>
+          </GlassCard>
+          <GlassCard className="border-cyan-500/20 bg-gradient-to-br from-cyan-500/5 to-transparent">
+            <h3 className="text-xs font-semibold uppercase tracking-widest text-cyan-500">Career objective</h3>
+            <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{PROFILE.objective}</p>
+          </GlassCard>
+        </motion.div>
       </motion.div>
-
-      <div className="about__grid about__grid--profile">
-        <motion.article
-          className="card card--lift card--summary"
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.52, delay: 0.04 }}
-        >
-          <h3 className="card__title">Profile summary</h3>
-          <p className="card__body">{PROFILE.summary}</p>
-        </motion.article>
-        <motion.article
-          className="card card--lift card--objective"
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.52, delay: 0.1 }}
-        >
-          <h3 className="card__title">Career objective</h3>
-          <p className="card__body">{PROFILE.objective}</p>
-        </motion.article>
-      </div>
     </section>
   );
 }

@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { EXPERIENCE } from "../data/resume";
+import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
+import { SectionHeader } from "./ui/SectionHeader";
 
 type ExperienceProps = {
   reduceMotion: boolean;
@@ -7,58 +9,61 @@ type ExperienceProps = {
 
 export function Experience({ reduceMotion }: ExperienceProps) {
   return (
-    <section className="section section--experience" id="experience">
+    <section id="experience" className="px-4 py-20 md:px-8 lg:px-12">
       <motion.div
-        className="section__header"
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        className="mx-auto max-w-6xl"
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportOnce}
+        variants={staggerContainer}
       >
-        <span className="section__label">Experience</span>
-        <h2 className="section__title">Where I have shipped</h2>
-        <p className="section__subtitle">
-          Enterprise SaaS, EdTech, and React product work with measurable impact on performance and reliability.
-        </p>
-      </motion.div>
+        <SectionHeader
+          label="Experience"
+          title="Where I have shipped"
+          subtitle="Drabito Technologies and Emminence Innovation—enterprise SaaS, betting UI, and measurable performance wins."
+        />
 
-      <ol className="timeline">
-        {EXPERIENCE.map((job, index) => (
-          <motion.li
-            key={job.company}
-            className="timeline__item"
-            initial={reduceMotion ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <div className="timeline__marker" aria-hidden />
-            <article className="timeline__card">
-              <header className="timeline__head">
-                <div>
-                  <h3 className="timeline__company">{job.company}</h3>
-                  <p className="timeline__role">{job.role}</p>
-                  {job.product ? <p className="timeline__product">{job.product}</p> : null}
+        <ol className="relative mt-4 space-y-8 border-l border-slate-200 pl-8 dark:border-slate-700">
+          {EXPERIENCE.map((job) => (
+            <motion.li
+              key={job.company}
+              className="relative"
+              variants={fadeUp}
+              initial={reduceMotion ? false : undefined}
+              whileInView={reduceMotion ? undefined : { opacity: 1, x: 0 }}
+              viewport={viewportOnce}
+            >
+              <span className="absolute -left-[2.15rem] top-1 flex h-4 w-4 items-center justify-center rounded-full border-2 border-cyan-500 bg-slate-950 ring-4 ring-slate-100 dark:ring-slate-900" />
+              <article className="rounded-2xl border border-slate-200/80 bg-white/60 p-6 backdrop-blur-md dark:border-white/10 dark:bg-slate-900/50">
+                <div className="flex flex-col gap-2 md:flex-row md:justify-between">
+                  <motion.div whileHover={reduceMotion ? undefined : { x: 4 }}>
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{job.company}</h3>
+                    <p className="text-sm text-cyan-600 dark:text-cyan-400">{job.role}</p>
+                    {job.product ? (
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{job.product}</p>
+                    ) : null}
+                  </motion.div>
+                  <motion.div className="text-left text-sm md:text-right" variants={fadeUp}>
+                    <p className="font-medium text-slate-700 dark:text-slate-300">{job.period}</p>
+                    <p className="text-slate-500">{job.location}</p>
+                  </motion.div>
                 </div>
-                <div className="timeline__meta">
-                  <span className="timeline__period">{job.period}</span>
-                  <span className="timeline__location">{job.location}</span>
-                </div>
-              </header>
-              {job.environment ? (
-                <p className="timeline__env">
-                  <span className="timeline__env-label">Stack</span> {job.environment}
-                </p>
-              ) : null}
-              <ul className="timeline__bullets">
-                {job.highlights.map((line, hi) => (
-                  <li key={`${job.company}-${hi}`}>{line}</li>
-                ))}
-              </ul>
-            </article>
-          </motion.li>
-        ))}
-      </ol>
+                {job.environment ? (
+                  <p className="mt-3 text-xs text-slate-500">
+                    <span className="uppercase tracking-wider">Stack · </span>
+                    {job.environment}
+                  </p>
+                ) : null}
+                <ul className="mt-4 list-disc space-y-2 pl-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  {job.highlights.map((line, hi) => (
+                    <li key={`${job.company}-${hi}`}>{line}</li>
+                  ))}
+                </ul>
+              </article>
+            </motion.li>
+          ))}
+        </ol>
+      </motion.div>
     </section>
   );
 }

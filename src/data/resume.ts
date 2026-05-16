@@ -1,6 +1,49 @@
 /** Single source of truth for résumé copy — replace `linkedin` with your vanity URL when ready. */
 export const SITE = {
   linkedin: "https://www.linkedin.com/in/anurag-ranjan-9309761ba/",
+  resumePath: "/resume.pdf",
+} as const;
+
+/** Add your PDF to `public/resume.pdf` for the download button to work. */
+export const TYPING_ROLES = [
+  "Frontend Developer",
+  "Angular Engineer",
+  "React Developer",
+  "SaaS UI Specialist",
+  "AI Interface Builder",
+] as const;
+
+export const FLOATING_TECH = [
+  "Angular",
+  "React",
+  "TypeScript",
+  "NgRx",
+  "Redux",
+  "RxJS",
+  "WebSockets",
+  "Tailwind",
+] as const;
+
+export const RECRUITER_METRICS = [
+  { value: 50, suffix: "+", label: "REST API integrations" },
+  { value: 40, suffix: "%", label: "Dashboard load improvement" },
+  { value: 1.6, suffix: "+", label: "Years shipping production UI", decimals: 1 },
+] as const;
+
+export const SKILL_PROFICIENCY = [
+  { name: "Angular & TypeScript", level: 92 },
+  { name: "React & Redux", level: 88 },
+  { name: "State management (NgRx / RxJS)", level: 90 },
+  { name: "REST & streaming APIs", level: 88 },
+  { name: "Performance & architecture", level: 85 },
+  { name: "Responsive UI & accessibility", level: 86 },
+] as const;
+
+/** Free Lottie JSON URLs (LottieFiles) — see README for swap suggestions. */
+export const LOTTIE = {
+  hero: "https://assets2.lottiefiles.com/packages/lf20_fcfjwiyb.json",
+  loading: "https://assets10.lottiefiles.com/packages/lf20_poqmycwz.json",
+  ai: "https://assets9.lottiefiles.com/packages/lf20_myejiggj.json",
 } as const;
 
 export const PROFILE = {
@@ -128,6 +171,7 @@ export type ProjectEntry = {
   period: string;
   environment: string;
   bullets: readonly string[];
+  featured?: boolean;
 };
 
 export const PROJECTS: readonly ProjectEntry[] = [
@@ -136,6 +180,7 @@ export const PROJECTS: readonly ProjectEntry[] = [
     subtitle: "Angular UI for wagering flows · Emminence Innovation",
     period: "Feb 2025 – Aug 2025",
     environment: "Angular, TypeScript, Bootstrap, REST APIs",
+    featured: true,
     bullets: [
       "Feature modules for browsing markets, building slips, and confirming stakes with form validation aligned to backend rules.",
       "Wallet and transaction history views with paginated REST data, stable list rendering, and defensive handling of partial failures.",
@@ -147,6 +192,7 @@ export const PROJECTS: readonly ProjectEntry[] = [
     subtitle: "Real-time communication platform",
     period: "—",
     environment: "Angular, TypeScript, WebSockets",
+    featured: true,
     bullets: [
       "Real-time messaging with group chat, invites, mentions, typing indicators, and online status.",
       "Text, image, and file messaging with live updates and tuned event handling for scale.",
@@ -157,6 +203,7 @@ export const PROJECTS: readonly ProjectEntry[] = [
     subtitle: "Enterprise assistant with streaming UX",
     period: "Aug 2025 – Mar 2026",
     environment: "Angular, Redux, streaming APIs",
+    featured: true,
     bullets: [
       "AI-powered assistant integrated with enterprise workflows and typewriter-style streaming responses.",
       "Mic animation and dynamic assistant interactions with Redux and NgRx for predictable state.",

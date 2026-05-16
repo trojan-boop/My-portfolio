@@ -1,40 +1,61 @@
-# Anurag Ranjan — portfolio
+# Anurag Ranjan — Portfolio (v2)
 
-Vite + React + TypeScript + React Three Fiber + Framer Motion.
+Production-style portfolio: **React 19**, **Vite**, **Tailwind CSS v4**, **Framer Motion**, **Lottie**, **React Three Fiber**, **React Icons**.
 
-## Local development
+## Setup
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Deploy to Vercel (from GitHub)
+Add your PDF: copy resume to **`public/resume.pdf`** for the download button.
 
-1. **Push this folder to GitHub**
-   - Create a new empty repository on GitHub (no README/license if you will push existing files).
-   - In this directory:
+## Deploy (Vercel)
 
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit: portfolio site"
-   git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
-   git push -u origin main
-   ```
+Import repo → Framework: **Vite** → Build: `npm run build` → Output: `dist`.
 
-2. **Import on Vercel**
-   - Go to [vercel.com](https://vercel.com) and sign in with GitHub.
-   - **Add New… → Project** → import your repository.
-   - Vercel should detect **Vite** automatically. Defaults:
-     - **Build command:** `npm run build`
-     - **Output directory:** `dist`
-     - **Install command:** `npm install`
-   - Click **Deploy**.
+## Design tokens
 
-3. **After deploy**
-   - Your site will get a URL like `https://your-repo.vercel.app`.
-   - Future pushes to `main` trigger new deployments automatically.
+| Token | Dark | Light |
+|-------|------|-------|
+| Background | `#06080c` | slate-50 |
+| Accent | cyan-400 / `#22d3ee` | cyan-600 |
+| Surface | slate-900/50 glass | white/70 |
 
-If the build fails, ensure **Node.js 20+** is selected in Vercel → Project → Settings → General → Node.js Version.
+**Fonts:** Plus Jakarta Sans (UI), Instrument Serif (headings), DM Sans (fallback).
+
+## Free Lottie suggestions (swap URLs in `src/data/resume.ts`)
+
+| Use | Search on LottieFiles |
+|-----|------------------------|
+| Hero / coding | "developer coding", "programmer workspace" |
+| Loading | "loading spinner", "preloader" |
+| AI assistant | "artificial intelligence", "chatbot" |
+
+Current URLs are in `LOTTIE` in `src/data/resume.ts`.
+
+## Project structure
+
+```
+src/
+  components/     # sections + ui primitives
+  context/        # ThemeProvider
+  data/resume.ts  # single source of content
+  hooks/          # active section, typing effect
+  lib/motion.ts   # shared Framer variants
+```
+
+## Features
+
+- Dark / light theme toggle
+- Typing roles in hero
+- Lottie hero + loader + AI project accent
+- Scroll progress + active nav section
+- Recruiter metrics + achievements
+- Skill bento + proficiency bars
+- Experience timeline
+- Project cards (demo/GitHub placeholders for NDA work)
+- Download resume
+- Lazy-loaded 3D background
+- Reduced motion + “Lite FX” mode

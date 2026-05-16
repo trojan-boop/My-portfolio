@@ -1,0 +1,2 @@
+Place your resume PDF at: public/resume.pdf
+The "Download resume" button links to /resume.pdf
