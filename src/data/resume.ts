@@ -92,7 +92,7 @@ export const EXPERIENCE: readonly ExperienceEntry[] = [
   {
     company: "Drabito Technologies",
     role: "Software Developer",
-    period: "Aug 2025 – Present",
+    period: "Aug 2025 – Mar 2026",
     location: "Noida, India",
     product: "WorkED — SaaS-based EdTech & workforce platform",
     environment: "Angular, TypeScript, RxJS, NgRx, REST APIs ,ReactJS, Redux, Tailwind CSS, WebSockets,Angular Material",
@@ -155,7 +155,7 @@ export const PROJECTS: readonly ProjectEntry[] = [
   {
     title: "AI assistant — EA portal",
     subtitle: "Enterprise assistant with streaming UX",
-    period: "Aug 2025 – Present",
+    period: "Aug 2025 – Mar 2026",
     environment: "Angular, Redux, streaming APIs",
     bullets: [
       "AI-powered assistant integrated with enterprise workflows and typewriter-style streaming responses.",
