@@ -3,7 +3,7 @@ import { SKILL_GROUPS, SKILL_PROFICIENCY } from "../data/resume";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { GlassCard } from "./ui/GlassCard";
 import { SectionHeader } from "./ui/SectionHeader";
-import { SkillProficiencyBar } from "./ui/SkillProficiencyBar";
+import { CoreStrengthsGrid } from "./ui/CoreStrengthsGrid";
 
 type SkillsProps = {
   reduceMotion: boolean;
@@ -46,19 +46,12 @@ export function Skills({ reduceMotion }: SkillsProps) {
           asStaggerChild
           label="Proficiency"
           title="Core strengths"
-          subtitle="Measured across production apps, code reviews, and shipped features."
+          subtitle="Proficiency orbs with framework depth — no bars, just signal."
         />
 
-        <motion.ul variants={fadeUp} className="grid gap-4 sm:grid-cols-2">
-          {SKILL_PROFICIENCY.map((skill) => (
-            <SkillProficiencyBar
-              key={skill.name}
-              name={skill.name}
-              level={skill.level}
-              reduceMotion={reduceMotion}
-            />
-          ))}
-        </motion.ul>
+        <motion.div variants={fadeUp}>
+          <CoreStrengthsGrid strengths={SKILL_PROFICIENCY} reduceMotion={reduceMotion} />
+        </motion.div>
       </motion.div>
     </section>
   );

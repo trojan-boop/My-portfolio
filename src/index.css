@@ -106,152 +106,162 @@
   opacity: 0.025;
 }
 
-/* Core strengths — modern proficiency bars */
-.skill-bar-card {
-  contain: layout style;
+/* Core strengths — radial bento grid */
+.strength-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  align-items: stretch;
 }
 
-.skill-tier {
-  border-radius: 9999px;
-  padding: 0.15rem 0.5rem;
-  font-size: 0.625rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+@media (min-width: 640px) {
+  .strength-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.skill-tier-expert {
-  color: #0891b2;
-  background: rgba(34, 211, 238, 0.12);
-  border: 1px solid rgba(34, 211, 238, 0.28);
+@media (min-width: 1024px) {
+  .strength-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.skill-tier-advanced {
-  color: #7c3aed;
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.25);
+.strength-card {
+  position: relative;
+  border-radius: 1.25rem;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
 }
 
-.skill-tier-proficient {
-  color: #64748b;
-  background: rgba(148, 163, 184, 0.12);
-  border: 1px solid rgba(148, 163, 184, 0.22);
+.strength-card:hover {
+  transform: translateY(-3px);
 }
 
-.dark .skill-tier-proficient {
-  color: #94a3b8;
+.strength-card-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(34, 211, 238, 0.35),
+    rgba(99, 102, 241, 0.2),
+    rgba(167, 139, 250, 0.35)
+  );
+  opacity: 0.45;
+  transition: opacity 0.35s ease;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-.skill-bar-value {
-  background: linear-gradient(135deg, #22d3ee 0%, #8b5cf6 100%);
+.strength-card:hover .strength-card-border,
+.strength-card-active .strength-card-border {
+  opacity: 1;
+}
+
+.strength-card-inner {
+  position: relative;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(145deg, rgba(15, 20, 28, 0.92) 0%, rgba(8, 12, 18, 0.96) 100%);
+  padding: 1.25rem;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Solid conic orb — no stroke dashes or segment bars */
+@property --level {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.strength-orb {
+  border-radius: 50%;
+  background: conic-gradient(
+    from 220deg,
+    #22d3ee 0deg,
+    #6366f1 calc(var(--level) * 3.6deg),
+    rgba(148, 163, 184, 0.12) calc(var(--level) * 3.6deg),
+    rgba(148, 163, 184, 0.12) 360deg
+  );
+  box-shadow: 0 0 28px rgba(34, 211, 238, 0.12);
+  transition:
+    --level 1s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+.strength-orb-active {
+  box-shadow: 0 0 36px rgba(34, 211, 238, 0.28);
+}
+
+.strength-orb-core {
+  position: absolute;
+  inset: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 35%, #151c28 0%, #080c12 72%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.strength-orb-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, #e0f2fe, #a78bfa);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.skill-bar-track {
-  position: relative;
-  height: 0.65rem;
+.strength-tier {
   border-radius: 9999px;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.06) 0%, rgba(15, 23, 42, 0.12) 100%);
-  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.12);
-  overflow: hidden;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.dark .skill-bar-track {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.5) 0%, rgba(2, 6, 23, 0.85) 100%);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.45);
+.strength-tier-expert {
+  color: #67e8f9;
+  background: rgba(34, 211, 238, 0.12);
+  border: 1px solid rgba(34, 211, 238, 0.35);
 }
 
-.skill-bar-ticks span {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  transform: translateX(-50%);
-  background: rgba(148, 163, 184, 0.22);
+.strength-tier-advanced {
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.3);
 }
 
-.dark .skill-bar-ticks span {
-  background: rgba(148, 163, 184, 0.12);
-}
-
-.skill-bar-fill {
-  position: relative;
-  height: 100%;
-  width: 0;
-  border-radius: inherit;
-  background: linear-gradient(90deg, #06b6d4 0%, #22d3ee 35%, #6366f1 70%, #8b5cf6 100%);
-  box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
-  transition: width 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.skill-bar-fill-active {
-  width: var(--progress, 0%);
-}
-
-.skill-bar-glow {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  opacity: 0.45;
-}
-
-.skill-bar-shine {
-  position: absolute;
-  inset: 0 auto 0 -40%;
-  width: 35%;
-  background: linear-gradient(
-    105deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.55) 45%,
-    transparent 100%
-  );
-  animation: skill-shine 2.8s ease-in-out infinite;
-}
-
-.skill-bar-cap {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 0.45rem;
-  height: 0.45rem;
-  transform: translate(50%, -50%);
-  border-radius: 50%;
-  background: #8b5cf6;
-  box-shadow: 0 0 10px rgba(139, 92, 246, 0.65);
-  opacity: 0;
-  transition: opacity 0.5s ease 0.7s;
-}
-
-.skill-bar-fill-active ~ .skill-bar-cap {
-  opacity: 1;
-}
-
-@keyframes skill-shine {
-  0%,
-  100% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  50% {
-    transform: translateX(320%);
-    opacity: 0.85;
-  }
+.strength-tier-proficient {
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.22);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .skill-bar-fill {
-    transition: none;
-    width: var(--progress, 0%);
+  .strength-card:hover {
+    transform: none;
   }
-  .skill-bar-shine {
-    animation: none;
-    display: none;
+
+  .strength-orb {
+    transition: none;
+    --level: var(--level);
   }
 }
 
