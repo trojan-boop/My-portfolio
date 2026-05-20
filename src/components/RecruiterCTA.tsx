@@ -30,7 +30,7 @@ export function RecruiterCTA() {
                   <AnimatedCounter
                     value={m.value}
                     suffix={m.suffix}
-                    decimals={"decimals" in m ? m.decimals : 0}
+                    decimals={m.decimals ?? 0}
                   />
                 </p>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{m.label}</p>

@@ -24,11 +24,18 @@ export const FLOATING_TECH = [
   "Tailwind",
 ] as const;
 
-export const RECRUITER_METRICS = [
+export type RecruiterMetric = {
+  value: number;
+  suffix?: string;
+  label: string;
+  decimals?: number;
+};
+
+export const RECRUITER_METRICS: readonly RecruiterMetric[] = [
   { value: 50, suffix: "+", label: "REST API integrations" },
   { value: 40, suffix: "%", label: "Dashboard load improvement" },
-  { value: 2,  label: "Years shipping production UI" },
-] as const;
+  { value: 2, label: "Years shipping production UI" },
+];
 
 export const SKILL_PROFICIENCY = [
   { name: "Angular & TypeScript", level: 92 },
