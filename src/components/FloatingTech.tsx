@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import type { ComponentType } from "react";
 import { FLOATING_TECH } from "../data/resume";
 import {
@@ -21,44 +20,37 @@ const ICONS: Record<string, ComponentType<{ className?: string }>> = {
   Tailwind: SiTailwindcss,
 };
 
+/** Show fewer icons to reduce layout + paint cost on first load */
+const VISIBLE_COUNT = 5;
+
 type FloatingTechProps = {
-  reduceMotion: boolean;
+  enabled: boolean;
 };
 
-export function FloatingTech({ reduceMotion }: FloatingTechProps) {
-  if (reduceMotion) return null;
+export function FloatingTech({ enabled }: FloatingTechProps) {
+  if (!enabled) return null;
 
   return (
-    <motion.div
-      className="pointer-events-none absolute inset-0 overflow-hidden"
-      aria-hidden
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.8, duration: 0.6 }}
-    >
-      {FLOATING_TECH.map((name, i) => {
+    <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-0 animate-[fadeIn_0.5s_ease_forwards]" aria-hidden>
+      {FLOATING_TECH.slice(0, VISIBLE_COUNT).map((name, i) => {
         const Icon = ICONS[name] ?? SiTypescript;
-        const top = 12 + (i % 4) * 18;
-        const left = 8 + ((i * 17) % 75);
+        const top = 14 + (i % 3) * 22;
+        const left = 10 + ((i * 19) % 72);
         return (
-          <motion.div
+          <div
             key={name}
-            className="absolute flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-slate-900/40 text-cyan-400 shadow-lg backdrop-blur-md dark:bg-slate-900/60"
-            style={{ top: `${top}%`, left: `${left}%` }}
-            animate={{
-              y: [0, -10, 0],
-              rotate: [0, i % 2 === 0 ? 4 : -4, 0],
-            }}
-            transition={{
-              duration: 4 + i * 0.4,
-              repeat: Infinity,
-              ease: "easeInOut",
+            className="floating-tech-icon absolute flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-slate-900/35 text-cyan-400 shadow-lg backdrop-blur-sm dark:bg-slate-900/50"
+            style={{
+              top: `${top}%`,
+              left: `${left}%`,
+              animationDelay: `${i * 0.35}s`,
+              animationDuration: `${4.5 + i * 0.3}s`,
             }}
           >
-            <Icon className="h-5 w-5" aria-hidden />
-          </motion.div>
+            <Icon className="h-4 w-4" aria-hidden />
+          </div>
         );
       })}
-    </motion.div>
+    </div>
   );
 }

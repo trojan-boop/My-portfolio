@@ -10,8 +10,13 @@ export default function BackgroundCanvas({ lowPower }: BackgroundCanvasProps) {
   return (
     <Canvas
       camera={{ position: [0, 0, 8], fov: 42 }}
-      dpr={lowPower ? [1, 1] : [1, 2]}
-      gl={{ antialias: !lowPower, alpha: true, powerPreference: lowPower ? "default" : "high-performance" }}
+      dpr={[1, lowPower ? 1 : 1.75]}
+      frameloop="always"
+      gl={{
+        antialias: !lowPower,
+        alpha: true,
+        powerPreference: lowPower ? "default" : "high-performance",
+      }}
     >
       <Suspense fallback={null}>
         <Scene lowPower={lowPower} />

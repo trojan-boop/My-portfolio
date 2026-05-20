@@ -23,10 +23,12 @@ const itemVariants: Variants = {
 type HeroProps = {
   reduceMotion: boolean;
   lowPower?: boolean;
+  effectsReady?: boolean;
 };
 
-export function Hero({ reduceMotion, lowPower = false }: HeroProps) {
+export function Hero({ reduceMotion, lowPower = false, effectsReady = false }: HeroProps) {
   const lite = reduceMotion || lowPower;
+  const showEffects = effectsReady && !lite;
   const typedRole = useTypingEffect(TYPING_ROLES, { speed: 65, pause: 2000, enabled: !lite });
   const variants = lite
     ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.25 } } }
@@ -40,20 +42,11 @@ export function Hero({ reduceMotion, lowPower = false }: HeroProps) {
       id="top"
       className="relative flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-28 md:px-8 lg:px-12"
     >
-      {!lite ? (
-        <motion.div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-violet-600/10"
-          animate={{ opacity: [0.35, 0.55, 0.35] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          aria-hidden
-        />
-      ) : (
-        <motion.div
-          className="pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/8 via-transparent to-violet-600/8"
-          aria-hidden
-        />
-      )}
-      <FloatingTech reduceMotion={lite} />
+      <div
+        className={`pointer-events-none absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-violet-600/10 ${showEffects ? "hero-gradient-live" : "opacity-80"}`}
+        aria-hidden
+      />
+      <FloatingTech enabled={showEffects} />
 
       <motion.div
         className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]"
@@ -116,7 +109,7 @@ export function Hero({ reduceMotion, lowPower = false }: HeroProps) {
             className="rounded-3xl border border-slate-200/80 bg-white/50 p-4 shadow-2xl backdrop-blur-xl dark:border-white/10 dark:bg-slate-900/40"
             whileHover={lite ? undefined : { y: -4, transition: { duration: 0.25 } }}
           >
-            {!lite ? (
+            {showEffects ? (
               <LottiePlayer
                 src={LOTTIE.hero}
                 className="mx-auto h-64 w-full md:h-72"
@@ -135,7 +128,7 @@ export function Hero({ reduceMotion, lowPower = false }: HeroProps) {
         </motion.div>
       </motion.div>
 
-      {!lite && (
+      {showEffects && (
         <motion.div
           className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-widest text-slate-500"
           initial={{ opacity: 0 }}

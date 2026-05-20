@@ -3,6 +3,7 @@ import { SKILL_GROUPS, SKILL_PROFICIENCY } from "../data/resume";
 import { fadeUp, staggerContainer, viewportOnce } from "../lib/motion";
 import { GlassCard } from "./ui/GlassCard";
 import { SectionHeader } from "./ui/SectionHeader";
+import { SkillProficiencyBar } from "./ui/SkillProficiencyBar";
 
 type SkillsProps = {
   reduceMotion: boolean;
@@ -47,35 +48,21 @@ export function Skills({ reduceMotion }: SkillsProps) {
           ))}
         </motion.div>
 
-        <SectionHeader label="Proficiency" title="Core strengths" />
-        <motion.ul className="space-y-5" variants={staggerContainer}>
+        <SectionHeader
+          label="Proficiency"
+          title="Core strengths"
+          subtitle="Measured across production apps, code reviews, and shipped features."
+        />
+        <ul className="grid gap-4 sm:grid-cols-2">
           {SKILL_PROFICIENCY.map((skill) => (
-            <motion.li key={skill.name} variants={fadeUp}>
-              <motion.div
-                className="flex justify-between text-sm"
-                initial={false}
-              >
-                <span className="font-medium text-slate-800 dark:text-slate-200">{skill.name}</span>
-                <span className="text-cyan-600 dark:text-cyan-400">{skill.level}%</span>
-              </motion.div>
-              <motion.div
-                className="mt-2 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800"
-                role="progressbar"
-                aria-valuenow={skill.level}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              >
-                <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-violet-500"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: reduceMotion ? 0.15 : 0.45, ease: [0.25, 0.1, 0.25, 1] }}
-                />
-              </motion.div>
-            </motion.li>
+            <SkillProficiencyBar
+              key={skill.name}
+              name={skill.name}
+              level={skill.level}
+              reduceMotion={reduceMotion}
+            />
           ))}
-        </motion.ul>
+        </ul>
       </motion.div>
     </section>
   );

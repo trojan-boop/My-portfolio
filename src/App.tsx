@@ -1,4 +1,4 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { About } from "./components/About";
 import { Contact } from "./components/Contact";
@@ -14,6 +14,7 @@ import { RecruiterCTA } from "./components/RecruiterCTA";
 import { ScrollProgress } from "./components/ScrollProgress";
 import { Skills } from "./components/Skills";
 import { ThemeProvider } from "./context/ThemeProvider";
+import { useDeferredEffects } from "./hooks/useDeferredEffects";
 import { getDefaultLiteMode } from "./hooks/useLiteMode";
 import { pageEnter } from "./lib/motion";
 
@@ -23,30 +24,15 @@ export default function App() {
   const reduceMotion = useReducedMotion();
   const [lowPower, setLowPower] = useState(getDefaultLiteMode);
   const [showLoader, setShowLoader] = useState(true);
-  const [contentVisible, setContentVisible] = useState(false);
-  const [canvasOn, setCanvasOn] = useState(false);
+  const effectsReady = useDeferredEffects({ minDelayMs: 600, idleTimeoutMs: 3000 });
 
   const onLoaderDone = useCallback(() => {
     setShowLoader(false);
   }, []);
 
-  // Main content paints immediately; loader is a short overlay only
-  useEffect(() => {
-    setContentVisible(true);
-  }, []);
-
-  const effectsOff = !!reduceMotion || lowPower;
-
-  // Defer WebGL until after first paint / idle — page stays interactive
-  useEffect(() => {
-    const enable = () => setCanvasOn(true);
-    if (typeof window.requestIdleCallback === "function") {
-      const id = window.requestIdleCallback(enable, { timeout: 1500 });
-      return () => window.cancelIdleCallback(id);
-    }
-    const t = setTimeout(enable, 400);
-    return () => clearTimeout(t);
-  }, []);
+  const decorationsOff = !!reduceMotion || lowPower;
+  const showBackground = effectsReady && !reduceMotion;
+  const showDecorations = effectsReady && !decorationsOff;
 
   return (
     <ThemeProvider>
@@ -54,33 +40,40 @@ export default function App() {
 
       <div className="relative min-h-screen">
         <ScrollProgress />
-        {!effectsOff ? <CustomCursor /> : null}
+        {showDecorations ? <CustomCursor /> : null}
 
-        <motion.div className="canvas-layer" aria-hidden initial={{ opacity: 0 }} animate={{ opacity: canvasOn ? 1 : 0 }} transition={{ duration: 0.45 }}>
-          {canvasOn ? (
+        <div
+          className={`canvas-layer transition-opacity duration-700 ${showBackground ? "opacity-100" : "opacity-0"}`}
+          aria-hidden
+        >
+          {showBackground ? (
             <Suspense fallback={null}>
-              <BackgroundCanvas lowPower={effectsOff} />
+              <BackgroundCanvas lowPower={lowPower} />
             </Suspense>
           ) : null}
-        </motion.div>
+        </div>
 
-        {!effectsOff ? <div className="noise-overlay" aria-hidden /> : null}
+        {showDecorations ? <div className="noise-overlay" aria-hidden /> : null}
 
         <Nav lowPower={lowPower} onToggleLowPower={() => setLowPower((v) => !v)} />
 
         <motion.main
           className="relative z-10"
           initial={pageEnter.initial}
-          animate={contentVisible ? pageEnter.animate : pageEnter.initial}
+          animate={pageEnter.animate}
           transition={pageEnter.transition}
         >
-          <Hero reduceMotion={!!reduceMotion} lowPower={lowPower} />
+          <Hero
+            reduceMotion={!!reduceMotion}
+            lowPower={lowPower}
+            effectsReady={showDecorations}
+          />
           <About />
           <RecruiterCTA />
-          <Skills reduceMotion={!!reduceMotion || effectsOff} />
-          <Experience reduceMotion={!!reduceMotion || effectsOff} />
-          <Projects reduceMotion={!!reduceMotion || effectsOff} />
-          <Education reduceMotion={!!reduceMotion || effectsOff} />
+          <Skills reduceMotion={!!reduceMotion || decorationsOff} />
+          <Experience reduceMotion={!!reduceMotion || decorationsOff} />
+          <Projects reduceMotion={!!reduceMotion || decorationsOff} />
+          <Education reduceMotion={!!reduceMotion || decorationsOff} />
           <Contact />
           <Footer />
         </motion.main>

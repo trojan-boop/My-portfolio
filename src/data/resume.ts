@@ -53,13 +53,13 @@ export const PROFILE = {
   email: "trojan.anurag07@gmail.com",
   phoneE164: "+919166791183",
   phoneDisplay: "+91 91667 91183",
-  yearsExperience: "1.6+",
+  yearsExperience: "2",
   locations: {
     current: "Noida, India",
     previous: "Gurugram, India",
   },
   summary:
-    "Frontend Software Developer with 1.6+ years of experience building scalable and responsive web applications using Angular, ReactJS, TypeScript, JavaScript, and modern frontend technologies. Skilled in RESTful API integration, state management with NgRx and Redux, RxJS, performance optimization, reusable component architecture, and responsive UI development. Hands-on experience in SaaS, CRM, EdTech, and AI-powered applications with real-time streaming responses, WebSockets, authentication systems, and enterprise-level dashboards.",
+    "Frontend Software Developer with 2 years of experience building scalable and responsive web applications using Angular, ReactJS, TypeScript, JavaScript, and modern frontend technologies. Skilled in RESTful API integration, state management with NgRx and Redux, RxJS, performance optimization, reusable component architecture, and responsive UI development. Hands-on experience in SaaS, CRM, EdTech, and AI-powered applications with real-time streaming responses, WebSockets, authentication systems, and enterprise-level dashboards.",
   objective:
     "To work as a Frontend Software Developer in an organization where I can utilize my existing skills and knowledge, continuously learn new technologies, and contribute toward building scalable, high-performance, and user-centric applications.",
 } as const;
@@ -151,7 +151,7 @@ export const EXPERIENCE: readonly ExperienceEntry[] = [
   {
     company: "Emminence Innovation",
     role: "Frontend Developer · Angular & UI",
-    period: "Feb 2025 – Aug 2025",
+    period: "Aug 2024 – Aug 2025",
     location: "Gurugram, India",
     product: "Sports betting & wagering client (regulated operator-facing product)",
     environment: "Angular, TypeScript, Bootstrap, REST APIs",
@@ -178,7 +178,7 @@ export const PROJECTS: readonly ProjectEntry[] = [
   {
     title: "Sports betting client",
     subtitle: "Angular UI for wagering flows · Emminence Innovation",
-    period: "Feb 2025 – Aug 2025",
+    period: "Aug 2024 – Aug 2025",
     environment: "Angular, TypeScript, Bootstrap, REST APIs",
     featured: true,
     bullets: [

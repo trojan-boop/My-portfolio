@@ -55,8 +55,8 @@ export function Scene({ lowPower }: SceneProps) {
     g.rotation.x = Math.sin(t * 0.1) * (lowPower ? 0.03 : 0.05);
   });
 
-  const starCount = useMemo(() => (lowPower ? 1200 : 3500), [lowPower]);
-  const knotSegments = lowPower ? [1.15, 0.32, 64, 16] as const : [1.15, 0.32, 128, 24] as const;
+  const starCount = useMemo(() => (lowPower ? 1200 : 2800), [lowPower]);
+  const knotSegments = lowPower ? [1.15, 0.32, 64, 16] as const : [1.15, 0.32, 100, 20] as const;
 
   return (
     <>
@@ -66,18 +66,18 @@ export function Scene({ lowPower }: SceneProps) {
       <ambientLight intensity={0.25} />
       <spotLight position={[8, 8, 6]} angle={0.35} penumbra={0.9} intensity={1.2} color="#a8dfff" />
 
-      {!lowPower ? <Environment preset="city" environmentIntensity={0.45} /> : null}
+      {!lowPower ? <Environment preset="city" environmentIntensity={0.4} /> : null}
 
       <group ref={group}>
-        <Float speed={lowPower ? 0.6 : 1.1} rotationIntensity={0.2} floatIntensity={0.4}>
+        <Float speed={lowPower ? 0.6 : 1} rotationIntensity={0.2} floatIntensity={0.4}>
           <mesh>
             <torusKnotGeometry args={knotSegments} />
             <MeshDistortMaterial
               color="#1a3a52"
               metalness={0.9}
               roughness={0.2}
-              distort={lowPower ? 0.15 : 0.28}
-              speed={lowPower ? 1.2 : 2}
+              distort={lowPower ? 0.15 : 0.26}
+              speed={lowPower ? 1 : 1.8}
               emissive="#0a1a28"
               emissiveIntensity={0.35}
             />
@@ -85,20 +85,26 @@ export function Scene({ lowPower }: SceneProps) {
         </Float>
 
         {!lowPower ? (
-          <Float speed={0.9} rotationIntensity={0.35} floatIntensity={0.3} position={[2.4, 0.9, -1.2]}>
+          <Float speed={0.85} rotationIntensity={0.3} floatIntensity={0.3} position={[2.4, 0.9, -1.2]}>
             <mesh>
-              <icosahedronGeometry args={[0.42, 0]} />
-              <meshStandardMaterial color="#7ee0ff" metalness={0.85} roughness={0.2} emissive="#2a6a88" emissiveIntensity={0.3} />
+              <icosahedronGeometry args={[0.4, 0]} />
+              <meshStandardMaterial
+                color="#7ee0ff"
+                metalness={0.85}
+                roughness={0.2}
+                emissive="#2a6a88"
+                emissiveIntensity={0.3}
+              />
             </mesh>
           </Float>
         ) : null}
       </group>
 
       {!lowPower ? (
-        <Sparkles count={40} scale={12} size={1.8} speed={0.25} opacity={0.25} color="#9fdfff" />
+        <Sparkles count={28} scale={11} size={1.6} speed={0.22} opacity={0.22} color="#9fdfff" />
       ) : null}
 
-      <Stars radius={80} depth={40} count={starCount} factor={2.5} saturation={0} fade speed={lowPower ? 0.2 : 0.4} />
+      <Stars radius={80} depth={40} count={starCount} factor={2.5} saturation={0} fade speed={lowPower ? 0.2 : 0.35} />
     </>
   );
 }

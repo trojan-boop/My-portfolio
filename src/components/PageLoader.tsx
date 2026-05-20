@@ -5,27 +5,27 @@ type PageLoaderProps = {
   onComplete: () => void;
 };
 
-/** Brief branded splash — does not block parsing; total time ~350ms */
+/** Minimal splash — no backdrop blur (GPU-heavy on first paint) */
 export function PageLoader({ onComplete }: PageLoaderProps) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const hide = () => setVisible(false);
-    const t = window.setTimeout(hide, 320);
+    const t = window.setTimeout(hide, 200);
     if (document.readyState === "complete") {
-      window.setTimeout(hide, 180);
+      window.setTimeout(hide, 80);
     } else {
-      window.addEventListener("load", hide, { once: true });
+      window.addEventListener("DOMContentLoaded", hide, { once: true });
     }
     return () => {
       window.clearTimeout(t);
-      window.removeEventListener("load", hide);
+      window.removeEventListener("DOMContentLoaded", hide);
     };
   }, []);
 
   useEffect(() => {
     if (!visible) {
-      const t = window.setTimeout(onComplete, 120);
+      const t = window.setTimeout(onComplete, 80);
       return () => window.clearTimeout(t);
     }
   }, [visible, onComplete]);
@@ -34,25 +34,16 @@ export function PageLoader({ onComplete }: PageLoaderProps) {
     <AnimatePresence>
       {visible ? (
         <motion.div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#06080c]/95 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[#06080c]/92"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           aria-hidden
         >
-          <motion.div
-            className="flex flex-col items-center gap-3"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.25 }}
-          >
-            <motion.div
-              className="h-9 w-9 rounded-full border-2 border-cyan-500/30 border-t-cyan-400"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 0.85, repeat: Infinity, ease: "linear" }}
-            />
+          <div className="flex flex-col items-center gap-3">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-cyan-500/25 border-t-cyan-400" />
             <span className="text-[10px] uppercase tracking-[0.2em] text-slate-500">Loading</span>
-          </motion.div>
+          </div>
         </motion.div>
       ) : null}
     </AnimatePresence>

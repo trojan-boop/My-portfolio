@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { HiOutlineMoon, HiOutlineSun, HiBars3, HiXMark } from "react-icons/hi2";
-import { useTheme } from "../context/ThemeProvider";
+import { HiBars3, HiXMark } from "react-icons/hi2";
 import { useActiveSection } from "../hooks/useActiveSection";
 import { ResumeButton } from "./ResumeButton";
 
@@ -22,7 +21,6 @@ type NavProps = {
 
 export function Nav({ lowPower, onToggleLowPower }: NavProps) {
   const active = useActiveSection();
-  const { theme, toggleTheme } = useTheme();
   const [open, setOpen] = useState(false);
 
   const linkClass = (href: string) => {
@@ -75,19 +73,11 @@ export function Nav({ lowPower, onToggleLowPower }: NavProps) {
           <ResumeButton variant="nav" className="hidden sm:inline-flex" />
           <button
             type="button"
-            onClick={toggleTheme}
-            className="rounded-full border border-slate-300/80 p-2 text-slate-700 dark:border-white/15 dark:text-slate-200"
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {theme === "dark" ? <HiOutlineSun className="h-4 w-4" /> : <HiOutlineMoon className="h-4 w-4" />}
-          </button>
-          <button
-            type="button"
             onClick={onToggleLowPower}
             className="hidden rounded-full border border-slate-300/80 px-2.5 py-1.5 text-[10px] uppercase tracking-wide text-slate-600 md:inline-block dark:border-white/15 dark:text-slate-400"
             aria-pressed={lowPower}
           >
-            {lowPower ? "Lite" : "FX"}
+            {lowPower ? "Lite" : "Full FX"}
           </button>
           <button
             type="button"
