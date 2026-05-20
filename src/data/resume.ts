@@ -27,7 +27,7 @@ export const FLOATING_TECH = [
 export const RECRUITER_METRICS = [
   { value: 50, suffix: "+", label: "REST API integrations" },
   { value: 40, suffix: "%", label: "Dashboard load improvement" },
-  { value: 1.6, suffix: "+", label: "Years shipping production UI", decimals: 1 },
+  { value: 2,  label: "Years shipping production UI" },
 ] as const;
 
 export const SKILL_PROFICIENCY = [
