@@ -18,6 +18,7 @@ export function Experience({ reduceMotion }: ExperienceProps) {
         variants={staggerContainer}
       >
         <SectionHeader
+          asStaggerChild
           label="Experience"
           title="Where I have shipped"
           subtitle="Drabito Technologies and Emminence Innovation—enterprise SaaS, betting UI, and measurable performance wins."

@@ -33,7 +33,7 @@ export const scaleHover = {
 };
 
 /** Trigger slightly before full enter — feels responsive without animating entire scroll */
-export const viewportOnce = { once: true, margin: "-40px" as const, amount: 0.12 as const };
+export const viewportOnce = { once: true, margin: "0px 0px -15% 0px" as const, amount: 0.08 as const };
 
 export const pageEnter = {
   initial: { opacity: 0 },

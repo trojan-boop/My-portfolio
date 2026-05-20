@@ -65,7 +65,7 @@ export function Hero({ reduceMotion, lowPower = false, effectsReady = false }: H
           </div>
 
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-500">Frontend · Angular · React</p>
-          <h1 className="mt-3 font-display text-5xl font-normal tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white">
+          <h1 className="mt-3 font-display text-5xl font-normal leading-[1.08] tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white">
             {PROFILE.name}
           </h1>
           <p className="mt-4 min-h-[2rem] text-lg text-slate-600 md:text-xl dark:text-slate-300">

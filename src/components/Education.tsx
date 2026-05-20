@@ -18,7 +18,7 @@ export function Education({ reduceMotion }: EducationProps) {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
-        <SectionHeader label="Academics" title="Education and recognitions" />
+        <SectionHeader asStaggerChild label="Academics" title="Education and recognitions" />
 
         <div className="grid gap-6 md:grid-cols-2">
           <motion.div variants={fadeUp}>
@@ -34,9 +34,7 @@ export function Education({ reduceMotion }: EducationProps) {
 
           <motion.div variants={fadeUp}>
             <GlassCard>
-              <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-800 dark:text-slate-200">
-                Achievements
-              </h3>
+              <h3 className="heading-card text-slate-900 dark:text-white">Achievements</h3>
               <ul className="mt-4 space-y-3">
                 {ACHIEVEMENTS.map((item, i) => (
                   <motion.li

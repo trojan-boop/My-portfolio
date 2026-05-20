@@ -27,11 +27,6 @@
     }
   }
 
-  section[id] {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 720px;
-  }
-
   body {
     @apply antialiased font-sans text-foreground bg-background;
     margin: 0;
@@ -46,6 +41,33 @@
     background: rgba(34, 211, 238, 0.35);
     color: #0f172a;
   }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+/* Section & card headings — sans-serif for even metrics / line height */
+.heading-section {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.heading-card {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--color-foreground);
+}
+
+.light .heading-card {
+  color: #0f172a;
 }
 
 /* 3D canvas layer (non-Tailwind) */

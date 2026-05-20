@@ -32,7 +32,7 @@ export type RecruiterMetric = {
 };
 
 export const RECRUITER_METRICS: readonly RecruiterMetric[] = [
-  { value: 50, suffix: "+", label: "REST API integrations" },
+  { value: 150, suffix: "+", label: "REST API integrations" },
   { value: 40, suffix: "%", label: "Dashboard load improvement" },
   { value: 2, label: "Years shipping production UI" },
 ];
@@ -73,15 +73,15 @@ export const PROFILE = {
 
 export const SKILL_GROUPS = [
   {
-    title: "Programming languages",
-    items: ["TypeScript", "JavaScript", "C++", "HTML", "CSS" , "Python"],
+    title: "Programming Languages",
+    items: ["TypeScript", "JavaScript", "C++", "HTML", "CSS", "Python"],
   },
   {
-    title: "Frameworks & libraries",
-    items: ["Angular", "ReactJS", "RxJS", "Redux", "NgRx", "Angular Material", "Bootstrap", "Tailwind CSS" ],
+    title: "Frameworks & Libraries",
+    items: ["Angular", "ReactJS", "RxJS", "Redux", "NgRx", "Angular Material", "Bootstrap", "Tailwind CSS"],
   },
   {
-    title: "Frontend concepts",
+    title: "Frontend Concepts",
     items: [
       "Component architecture",
       "Lazy loading",
@@ -91,7 +91,7 @@ export const SKILL_GROUPS = [
     ],
   },
   {
-    title: "Architecture & concepts",
+    title: "Architecture & Concepts",
     items: [
       "Micro frontend architecture",
       "Real-time systems (WebSockets)",
@@ -101,16 +101,16 @@ export const SKILL_GROUPS = [
     ],
   },
   {
-    title: "AI & integrations",
-    items: ["AI integration", "Streaming APIs", "Dynamic UI updates" ,"Chunked data handling"],
+    title: "AI & Integrations",
+    items: ["AI integration", "Streaming APIs", "Dynamic UI updates", "Chunked data handling"],
   },
   {
-    title: "Tools & platforms",
-    items: ["Git", "Postman", "VS Code" ,"Jira", "Agile methodologies", "Scrum"],
+    title: "Tools & Platforms",
+    items: ["Git", "Bitbucket", "Postman", "VS Code", "Cursor", "AntiGravity", "Jira", "Agile methodologies", "Scrum"],
   },
   {
     title: "Other",
-    items: ["WCAG", "DSA", "Authentication & authorization" ,"Role-based access control", "Testing & debugging"],
+    items: ["WCAG", "DSA", "Authentication & authorization", "Role-based access control", "Testing & debugging"],
   },
 ] as const;
 
@@ -142,7 +142,7 @@ export const EXPERIENCE: readonly ExperienceEntry[] = [
   {
     company: "Drabito Technologies",
     role: "Software Developer",
-    period: "Aug 2025 – Mar 2026",
+    period: "Aug 2025 – May 2026",
     location: "Noida, India",
     product: "WorkED — SaaS-based EdTech & workforce platform",
     environment: "Angular, TypeScript, RxJS, NgRx, REST APIs ,ReactJS, Redux, Tailwind CSS, WebSockets,Angular Material",
@@ -183,7 +183,7 @@ export type ProjectEntry = {
 
 export const PROJECTS: readonly ProjectEntry[] = [
   {
-    title: "Sports betting client",
+    title: "Sports Betting Client",
     subtitle: "Angular UI for wagering flows · Emminence Innovation",
     period: "Aug 2024 – Aug 2025",
     environment: "Angular, TypeScript, Bootstrap, REST APIs",
@@ -195,7 +195,7 @@ export const PROJECTS: readonly ProjectEntry[] = [
     ],
   },
   {
-    title: "Team chat application",
+    title: "Team Chat Application",
     subtitle: "Real-time communication platform",
     period: "—",
     environment: "Angular, TypeScript, WebSockets",
@@ -206,9 +206,9 @@ export const PROJECTS: readonly ProjectEntry[] = [
     ],
   },
   {
-    title: "AI assistant — EA portal",
+    title: "AI Assistant — WorkED",
     subtitle: "Enterprise assistant with streaming UX",
-    period: "Aug 2025 – Mar 2026",
+    period: "Aug 2025 – May 2026",
     environment: "Angular, Redux, streaming APIs",
     featured: true,
     bullets: [

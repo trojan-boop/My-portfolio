@@ -19,6 +19,7 @@ export function Projects({ reduceMotion }: ProjectsProps) {
         variants={staggerContainer}
       >
         <SectionHeader
+          asStaggerChild
           label="Projects"
           title="Production-level builds"
           subtitle="SaaS dashboards, real-time chat, AI streaming assistants, and regulated betting UI."
