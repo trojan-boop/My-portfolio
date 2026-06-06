@@ -13,7 +13,9 @@ Add your PDF: copy resume to **`public/resume.pdf`** for the download button.
 
 ## Deploy (Vercel)
 
-Import repo → Framework: **Next.js** (auto-detected) → Build: `npm run build`.
+Import repo → Framework: **Next.js** → Build: `npm run build`.
+
+If deploy fails with *"No Output Directory named dist"*, your project still has the old Vite setting. In Vercel → **Project Settings → Build & Development Settings**, set Framework Preset to **Next.js** and clear **Output Directory** (leave blank). The repo `vercel.json` also pins the Next.js framework.
 
 ## Design tokens
 
