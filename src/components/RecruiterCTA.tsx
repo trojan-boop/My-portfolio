@@ -13,7 +13,7 @@ export function RecruiterCTA() {
         <SectionHeader
           label="For recruiters"
           title="Impact at a glance"
-          subtitle="Enterprise SaaS, CRM, EdTech, and AI-assisted products—delivered with measurable frontend outcomes."
+          subtitle="SaaS, EdTech, CRM, and AI-powered enterprise platforms—with measurable frontend outcomes."
         />
 
         <motion.div

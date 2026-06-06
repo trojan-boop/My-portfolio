@@ -21,7 +21,7 @@ export function Experience({ reduceMotion }: ExperienceProps) {
           asStaggerChild
           label="Experience"
           title="Where I have shipped"
-          subtitle="Drabito Technologies and Emminence Innovation—enterprise SaaS, betting UI, and measurable performance wins."
+          subtitle="Drabito Technologies and Emminence Innovation—SaaS EdTech, AI assistants, gaming, and CRM platforms."
         />
 
         <ol className="relative mt-4 space-y-8 border-l border-slate-200 pl-8 dark:border-slate-700">

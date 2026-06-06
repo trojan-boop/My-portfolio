@@ -1,26 +1,31 @@
-import { lazy, Suspense, useCallback, useState } from "react";
+"use client";
+
+import dynamic from "next/dynamic";
+import { Suspense, useCallback, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { About } from "./components/About";
-import { Contact } from "./components/Contact";
-import { CustomCursor } from "./components/CustomCursor";
-import { Education } from "./components/Education";
-import { Experience } from "./components/Experience";
-import { Footer } from "./components/Footer";
-import { Hero } from "./components/Hero";
-import { Nav } from "./components/Nav";
-import { PageLoader } from "./components/PageLoader";
-import { Projects } from "./components/Projects";
-import { RecruiterCTA } from "./components/RecruiterCTA";
-import { ScrollProgress } from "./components/ScrollProgress";
-import { Skills } from "./components/Skills";
-import { ThemeProvider } from "./context/ThemeProvider";
-import { useDeferredEffects } from "./hooks/useDeferredEffects";
-import { getDefaultLiteMode } from "./hooks/useLiteMode";
-import { pageEnter } from "./lib/motion";
+import { About } from "./About";
+import { Contact } from "./Contact";
+import { CustomCursor } from "./CustomCursor";
+import { Education } from "./Education";
+import { Experience } from "./Experience";
+import { Footer } from "./Footer";
+import { Hero } from "./Hero";
+import { Nav } from "./Nav";
+import { PageLoader } from "./PageLoader";
+import { Projects } from "./Projects";
+import { RecruiterCTA } from "./RecruiterCTA";
+import { ScrollProgress } from "./ScrollProgress";
+import { Skills } from "./Skills";
+import { ThemeProvider } from "@/context/ThemeProvider";
+import { useDeferredEffects } from "@/hooks/useDeferredEffects";
+import { getDefaultLiteMode } from "@/hooks/useLiteMode";
+import { pageEnter } from "@/lib/motion";
 
-const BackgroundCanvas = lazy(() => import("./components/BackgroundCanvas"));
+const BackgroundCanvas = dynamic(() => import("./BackgroundCanvas"), {
+  ssr: false,
+});
 
-export default function App() {
+export function Portfolio() {
   const reduceMotion = useReducedMotion();
   const [lowPower, setLowPower] = useState(getDefaultLiteMode);
   const [showLoader, setShowLoader] = useState(true);

@@ -64,7 +64,9 @@ export function Hero({ reduceMotion, lowPower = false, effectsReady = false }: H
             </span>
           </div>
 
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-500">Frontend · Angular · React</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-cyan-500">
+            {PROFILE.role} — {PROFILE.tagline}
+          </p>
           <h1 className="mt-3 font-display text-5xl font-normal leading-[1.08] tracking-tight text-slate-900 md:text-6xl lg:text-7xl dark:text-white">
             {PROFILE.name}
           </h1>
@@ -76,8 +78,7 @@ export function Hero({ reduceMotion, lowPower = false, effectsReady = false }: H
             </span>
           </p>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-slate-600 dark:text-slate-400">
-            {PROFILE.focus}. SaaS, CRM, EdTech, and AI assistants with streaming UX, NgRx/Redux, and enterprise
-            dashboards.
+            {PROFILE.heroBlurb}
           </p>
 
           <motion.div className="mt-8 flex flex-wrap gap-3">

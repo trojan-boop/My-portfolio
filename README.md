@@ -1,6 +1,6 @@
 # Anurag Ranjan — Portfolio (v2)
 
-Production-style portfolio: **React 19**, **Vite**, **Tailwind CSS v4**, **Framer Motion**, **Lottie**, **React Three Fiber**, **React Icons**.
+Production-style portfolio: **Next.js 15**, **React 19**, **Tailwind CSS v4**, **Framer Motion**, **Lottie**, **React Three Fiber**, **React Icons**.
 
 ## Setup
 
@@ -13,7 +13,7 @@ Add your PDF: copy resume to **`public/resume.pdf`** for the download button.
 
 ## Deploy (Vercel)
 
-Import repo → Framework: **Vite** → Build: `npm run build` → Output: `dist`.
+Import repo → Framework: **Next.js** (auto-detected) → Build: `npm run build`.
 
 ## Design tokens
 
@@ -39,7 +39,8 @@ Current URLs are in `LOTTIE` in `src/data/resume.ts`.
 
 ```
 src/
-  components/     # sections + ui primitives
+  app/            # Next.js App Router (layout, page, globals.css)
+  components/     # sections + ui primitives + Portfolio shell
   context/        # ThemeProvider
   data/resume.ts  # single source of content
   hooks/          # active section, typing effect
@@ -48,7 +49,7 @@ src/
 
 ## Features
 
-- Dark / light theme toggle
+- Fixed dark theme (class applied in root layout)
 - Typing roles in hero
 - Lottie hero + loader + AI project accent
 - Scroll progress + active nav section

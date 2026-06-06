@@ -17,8 +17,8 @@ export function About() {
         <SectionHeader
           asStaggerChild
           label="Profile"
-          title="Summary and objective"
-          subtitle="Frontend engineer focused on scalable SaaS, CRM, EdTech, and AI-powered interfaces."
+          title="Summary"
+          subtitle="Frontend developer across SaaS, CRM, EdTech, and AI-driven enterprise platforms."
         />
         <motion.div className="grid gap-5 md:grid-cols-2" variants={fadeUp}>
           <GlassCard>
@@ -26,8 +26,17 @@ export function About() {
             <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{PROFILE.summary}</p>
           </GlassCard>
           <GlassCard className="border-cyan-500/20 bg-gradient-to-br from-cyan-500/5 to-transparent">
-            <h3 className="heading-card text-slate-900 dark:text-white">Career Objective</h3>
-            <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{PROFILE.objective}</p>
+            <h3 className="heading-card text-slate-900 dark:text-white">Domains & platforms</h3>
+            <ul className="mt-3 space-y-2">
+              {PROFILE.domains.map((domain) => (
+                <li
+                  key={domain}
+                  className="flex gap-2 text-sm leading-relaxed text-slate-600 before:mt-2 before:h-1.5 before:w-1.5 before:shrink-0 before:rounded-full before:bg-cyan-500 before:content-[''] dark:text-slate-400"
+                >
+                  {domain}
+                </li>
+              ))}
+            </ul>
           </GlassCard>
         </motion.div>
       </motion.div>

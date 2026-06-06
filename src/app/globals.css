@@ -3,9 +3,9 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Plus Jakarta Sans", "DM Sans", system-ui, sans-serif;
-  --font-display: "Instrument Serif", Georgia, serif;
-  --font-family-display: "Instrument Serif", Georgia, serif;
+  --font-sans: var(--font-plus-jakarta), var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --font-family-display: var(--font-instrument-serif), Georgia, serif;
   --color-accent: #22d3ee;
   --color-accent-muted: #0891b2;
   --color-surface: #0f1419;

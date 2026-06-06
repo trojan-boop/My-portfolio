@@ -22,7 +22,7 @@ export function Projects({ reduceMotion }: ProjectsProps) {
           asStaggerChild
           label="Projects"
           title="Production-level builds"
-          subtitle="SaaS dashboards, real-time chat, AI streaming assistants, and regulated betting UI."
+          subtitle="SaaS EdTech dashboards, enterprise AI assistants, real-time chat, and React modules for solar & EPC."
         />
 
         <div className="grid gap-6 lg:grid-cols-2">

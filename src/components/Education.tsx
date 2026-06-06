@@ -27,7 +27,9 @@ export function Education({ reduceMotion }: EducationProps) {
                 {EDUCATION.period}
               </span>
               <h3 className="mt-3 text-xl font-semibold text-slate-900 dark:text-white">{EDUCATION.school}</h3>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{EDUCATION.degree}</p>
+              <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                {EDUCATION.degree} · {EDUCATION.location}
+              </p>
               <p className="mt-4 text-3xl font-bold text-cyan-500">{EDUCATION.result}</p>
             </GlassCard>
           </motion.div>

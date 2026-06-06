@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200/80 px-4 py-8 dark:border-white/10 md:px-8">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-3 text-sm text-slate-500 sm:flex-row sm:items-center">
-        <p>© {year} Anurag Ranjan. React · R3F · Framer Motion · Tailwind.</p>
+        <p>© {year} Anurag Ranjan. Next.js · R3F · Framer Motion · Tailwind.</p>
         <a
           href={SITE.linkedin}
           target="_blank"

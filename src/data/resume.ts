@@ -10,7 +10,7 @@ export const TYPING_ROLES = [
   "Angular Engineer",
   "React Developer",
   "SaaS UI Specialist",
-  "AI Interface Builder",
+  "AI-Powered Applications",
 ] as const;
 
 export const FLOATING_TECH = [
@@ -34,16 +34,16 @@ export type RecruiterMetric = {
 export const RECRUITER_METRICS: readonly RecruiterMetric[] = [
   { value: 150, suffix: "+", label: "REST API integrations" },
   { value: 40, suffix: "%", label: "Dashboard load improvement" },
-  { value: 2, label: "Years shipping production UI" },
+  { value: 2, suffix: "+", label: "Years shipping production UI" },
 ];
 
 export const SKILL_PROFICIENCY = [
   { name: "Angular & TypeScript", level: 92 },
   { name: "React & Redux", level: 88 },
+  { name: "AI & LLM integrations", level: 90 },
   { name: "State management (NgRx / RxJS)", level: 90 },
-  { name: "REST & streaming APIs", level: 88 },
-  { name: "Performance & architecture", level: 85 },
-  { name: "Responsive UI & accessibility", level: 86 },
+  { name: "REST & streaming APIs (SSE)", level: 88 },
+  { name: "Performance & WCAG accessibility", level: 86 },
 ] as const;
 
 /** Free Lottie JSON URLs (LottieFiles) — see README for swap suggestions. */
@@ -55,26 +55,40 @@ export const LOTTIE = {
 
 export const PROFILE = {
   name: "Anurag Ranjan",
-  role: "Software Developer",
-  focus: "Frontend · SaaS · EdTech · Enterprise dashboards",
+  role: "Frontend Developer",
+  tagline: "AI-Powered Applications",
   email: "trojan.anurag07@gmail.com",
   phoneE164: "+919166791183",
-  phoneDisplay: "+91 91667 91183",
-  yearsExperience: "2",
+  phoneDisplay: "9166791183",
+  yearsExperience: "2+",
   locations: {
-    current: "Noida, India",
+    current: "Noida, Uttar Pradesh",
     previous: "Gurugram, India",
   },
+  heroBlurb:
+    "Building scalable web applications with Angular, React, and TypeScript — from SaaS EdTech dashboards and CRM platforms to enterprise AI assistants with real-time LLM streaming.",
   summary:
-    "Frontend Software Developer with 2 years of experience building scalable and responsive web applications using Angular, ReactJS, TypeScript, JavaScript, and modern frontend technologies. Skilled in RESTful API integration, state management with NgRx and Redux, RxJS, performance optimization, reusable component architecture, and responsive UI development. Hands-on experience in SaaS, CRM, EdTech, and AI-powered applications with real-time streaming responses, WebSockets, authentication systems, and enterprise-level dashboards.",
-  objective:
-    "To work as a Frontend Software Developer in an organization where I can utilize my existing skills and knowledge, continuously learn new technologies, and contribute toward building scalable, high-performance, and user-centric applications.",
+    "Frontend Developer with 2+ years of experience building AI-powered web applications using Angular, ReactJS, TypeScript, and JavaScript. Hands-on experience integrating LLM APIs (Claude, OpenAI, Gemini), implementing real-time SSE streaming interfaces, and developing enterprise AI assistants with multi-turn conversation state. Proficient in NgRx/Redux/RxJS state management, WebSocket-based real-time systems, RESTful API integration, WCAG accessibility, and performance optimization across SaaS, CRM, EdTech, and AI-driven enterprise platforms.",
+  domains: [
+    "SaaS & EdTech platforms",
+    "CRM & enterprise dashboards",
+    "AI assistants with LLM streaming",
+    "Real-time WebSocket systems",
+  ],
 } as const;
 
 export const SKILL_GROUPS = [
   {
-    title: "Programming Languages",
-    items: ["TypeScript", "JavaScript", "C++", "HTML", "CSS", "Python"],
+    title: "AI & Integrations",
+    items: [
+      "LLM APIs (Claude / OpenAI / Gemini)",
+      "Prompt engineering",
+      "Streaming APIs (SSE)",
+      "AI chat UI development",
+      "Real-time AI response rendering",
+      "WebSocket-based AI streaming",
+      "Dynamic UI updates",
+    ],
   },
   {
     title: "Frameworks & Libraries",
@@ -88,6 +102,8 @@ export const SKILL_GROUPS = [
       "State management",
       "Responsive design",
       "API integration",
+      "WCAG",
+      "Jest / unit testing",
     ],
   },
   {
@@ -97,33 +113,29 @@ export const SKILL_GROUPS = [
       "Real-time systems (WebSockets)",
       "OOP",
       "Performance optimization",
-      "Monorepos",
+      "DSA",
     ],
   },
   {
-    title: "AI & Integrations",
-    items: ["AI integration", "Streaming APIs", "Dynamic UI updates", "Chunked data handling"],
+    title: "Programming Languages",
+    items: ["TypeScript", "JavaScript", "C++", "HTML", "CSS"],
   },
   {
     title: "Tools & Platforms",
-    items: ["Git", "Bitbucket", "Postman", "VS Code", "Cursor", "AntiGravity", "Jira", "Agile methodologies", "Scrum"],
-  },
-  {
-    title: "Other",
-    items: ["WCAG", "DSA", "Authentication & authorization", "Role-based access control", "Testing & debugging"],
+    items: ["Git", "Postman", "VS Code", "Agile", "Scrum"],
   },
 ] as const;
 
 export const ACHIEVEMENTS = [
-  "Contributed to enterprise-level SaaS and CRM applications serving large-scale business workflows.",
-  "Collaborated with cross-functional teams in Agile and Scrum environments to deliver production-ready features.",
-  "Worked on AI-powered assistant interfaces with real-time response streaming and interactive frontend experiences.",
-  "Developed scalable and reusable frontend modules to improve maintainability and faster feature delivery.",
+  "Shipped enterprise AI assistant interface with real-time LLM streaming for a production SaaS platform — reduced manual workflow effort for enterprise users.",
+  "Improved dashboard performance by 40% and cut API calls by 35–50% through advanced RxJS caching and lazy loading strategies.",
+  "Collaborated with cross-functional teams in Agile/Scrum environments to deliver production-ready features across SaaS, EdTech, and AI-powered platforms.",
 ] as const;
 
 export const EDUCATION = {
   degree: "Bachelor of Technology · Computer Science Engineering",
   school: "Lovely Professional University",
+  location: "Phagwara, Punjab",
   period: "2020 – 2024",
   result: "7.5 CGPA",
 } as const;
@@ -144,30 +156,19 @@ export const EXPERIENCE: readonly ExperienceEntry[] = [
     role: "Software Developer",
     period: "Aug 2025 – May 2026",
     location: "Noida, India",
-    product: "WorkED — SaaS-based EdTech & workforce platform",
-    environment: "Angular, TypeScript, RxJS, NgRx, REST APIs ,ReactJS, Redux, Tailwind CSS, WebSockets,Angular Material",
     highlights: [
-      "Developed dynamic dashboards using Angular with reusable components, reactive forms, and real-time data visualization.",
-      "Integrated 50+ REST APIs with authentication, pagination, AG Grid, and error handling to improve data reliability and performance.",
-      "Built responsive UI with Angular Material, HTML, CSS, Bootstrap, and TypeScript for a seamless cross-device experience.",
-      "Improved enterprise SaaS and CRM dashboard load time by about 40% using lazy loading, optimized API calls, and efficient state management.",
-      "Reduced redundant API calls by roughly 35–50% using Angular lifecycle hooks and RxJS caching strategies.",
-      "Implemented Redux and NgRx for scalable, maintainable frontend state management.",
+      "Led frontend development of WorkED (SaaS EdTech platform) and AI Assistant (EA Portal).",
+      "Integrated 150+ REST APIs, implemented LLM streaming, and improved dashboard performance by 40%.",
     ],
   },
   {
     company: "Emminence Innovation",
-    role: "Frontend Developer · Angular & UI",
+    role: "Frontend Developer",
     period: "Aug 2024 – Aug 2025",
     location: "Gurugram, India",
-    product: "Sports betting & wagering client (regulated operator-facing product)",
-    environment: "Angular, TypeScript, Bootstrap, REST APIs",
     highlights: [
-      "Owned end-to-end UI delivery for a high-traffic betting application: markets, bet slip, wallet, and account journeys using Angular modules and shared component libraries.",
-      "Built responsive, Bootstrap-backed layouts and reusable Angular components so new betting markets and promotions could ship without one-off markup.",
-      "Integrated REST APIs for odds, wallets, transactions, and user state with explicit loading, empty, and error handling so live data updates stayed understandable under load.",
-      "Worked closely with design and backend in Agile cadence to turn specs and wireframes into accessible, production-ready screens with consistent validation and guardrails.",
-      "Improved perceived performance via lazy-loaded feature areas, lean change detection patterns where appropriate, and careful template structure for list-heavy views.",
+      "Built scalable Angular and ReactJS applications for enterprise clients.",
+      "Contributed to real-time Money gaming and CRM platforms with real-time features, responsive design, and cross-functional Agile delivery.",
     ],
   },
 ] as const;
@@ -183,38 +184,46 @@ export type ProjectEntry = {
 
 export const PROJECTS: readonly ProjectEntry[] = [
   {
-    title: "Sports Betting Client",
-    subtitle: "Angular UI for wagering flows · Emminence Innovation",
-    period: "Aug 2024 – Aug 2025",
-    environment: "Angular, TypeScript, Bootstrap, REST APIs",
+    title: "AI Assistant — EA Portal",
+    subtitle: "Enterprise AI assistant with LLM streaming",
+    period: "Feb 2026 – Mar 2026",
+    environment: "Angular, Redux, Streaming APIs, LLM APIs (Claude / OpenAI)",
     featured: true,
     bullets: [
-      "Feature modules for browsing markets, building slips, and confirming stakes with form validation aligned to backend rules.",
-      "Wallet and transaction history views with paginated REST data, stable list rendering, and defensive handling of partial failures.",
-      "Shared UI kit (buttons, modals, banners) so product and compliance copy could roll out consistently across the app.",
+      "Built enterprise AI assistant with LLM API integration (Claude/OpenAI), real-time SSE token streaming, typewriter UI rendering, and multi-turn conversation state management using Redux/NgRx.",
+      "Implemented prompt engineering layer to constrain AI responses to enterprise workflows; added JWT-based auth and role-based access control for secure portal access.",
+    ],
+  },
+  {
+    title: "WorkED",
+    subtitle: "SaaS-based EdTech & workforce platform",
+    period: "Aug 2025 – May 2026",
+    environment: "Angular, TypeScript, RxJS, NgRx, REST APIs",
+    featured: true,
+    bullets: [
+      "Integrated 150+ REST APIs with AG Grid, pagination, and real-time data visualization; improved dashboard load time by 40% and reduced redundant API calls by 35–50% via lazy loading and RxJS caching.",
+      "Built responsive UI with Angular Material and Bootstrap; implemented NgRx for scalable, maintainable frontend state management.",
     ],
   },
   {
     title: "Team Chat Application",
     subtitle: "Real-time communication platform",
-    period: "—",
+    period: "Aug 2025 – Jan 2026",
     environment: "Angular, TypeScript, WebSockets",
     featured: true,
     bullets: [
-      "Real-time messaging with group chat, invites, mentions, typing indicators, and online status.",
-      "Text, image, and file messaging with live updates and tuned event handling for scale.",
+      "Developed real-time team chat using Angular and WebSockets with group chat, mentions, typing indicators, and file/image messaging.",
+      "WebSocket architecture directly applied to AI streaming interfaces for low-latency, event-driven UI updates.",
     ],
   },
   {
-    title: "AI Assistant — WorkED",
-    subtitle: "Enterprise assistant with streaming UX",
-    period: "Aug 2025 – May 2026",
-    environment: "Angular, Redux, streaming APIs",
-    featured: true,
+    title: "Zep 360",
+    subtitle: "All-in-one OS for solar & EPC businesses",
+    period: "Feb 2026 – May 2026",
+    environment: "ReactJS, Redux, Tailwind CSS",
     bullets: [
-      "AI-powered assistant integrated with enterprise workflows and typewriter-style streaming responses.",
-      "Mic animation and dynamic assistant interactions with Redux and NgRx for predictable state.",
-      "Authentication, authorization, and role-based access control for secure portal usage.",
+      "Built scalable ReactJS modules with reusable component architecture, dynamic UI workflows, and REST API integration.",
+      "Optimized Redux state handling and responsive Tailwind layouts for enterprise solar & EPC operations.",
     ],
   },
 ] as const;
